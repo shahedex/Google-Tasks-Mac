@@ -11,6 +11,8 @@ Manage the same tasks you use on your phone and on tasks.google.com without open
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![Swift](https://img.shields.io/badge/Swift-SwiftUI-orange?logo=swift)
 ![Google Tasks API](https://img.shields.io/badge/Google%20Tasks-API%20v1-4285F4?logo=google)
+[![Latest release](https://img.shields.io/github/v/release/shahedex/Google-Tasks-Mac)](https://github.com/shahedex/Google-Tasks-Mac/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/main-dark.png">
@@ -64,9 +66,24 @@ Click the status label at any time to sync immediately.
 
 ## Getting started
 
-### 1. Build the app
+### 1. Install the app
 
-You need **macOS 14 (Sonoma) or later** and the Swift toolchain. The Xcode Command Line Tools are enough; you don't need the full Xcode app.
+You need **macOS 14 (Sonoma) or later**. You can download a ready-made app, or build it yourself.
+
+#### Option A: Download
+
+1. Download **`Google-Tasks-Mac-v*.zip`** from the [latest release](https://github.com/shahedex/Google-Tasks-Mac/releases/latest). It runs on both Apple silicon and Intel Macs.
+2. Unzip it and drag **Google Tasks.app** into **Applications**.
+3. The app isn't notarized by Apple, so macOS blocks it the first time:
+   - Double-click the app, then click **Done** on the warning.
+   - Open **System Settings → Privacy & Security**, scroll down, and click **Open Anyway** next to "Google Tasks".
+   - Or, in Terminal: `xattr -dr com.apple.quarantine "/Applications/Google Tasks.app"`
+
+   You only need to do this once.
+
+#### Option B: Build from source
+
+You need the Swift toolchain. The Xcode Command Line Tools are enough; you don't need the full Xcode app.
 
 ```sh
 xcode-select --install        # skip if you already have the Command Line Tools
@@ -75,7 +92,7 @@ cd Google-Tasks-Mac
 ./build.sh --install          # builds "Google Tasks.app" and copies it to /Applications
 ```
 
-Run `./build.sh` without `--install` to build into `build/` only. The app is ad-hoc signed for local use.
+Run `./build.sh` without `--install` to build into `build/` only. Run `./build.sh --release` to make a universal zip like the one on the releases page. Builds are ad-hoc signed.
 
 ### 2. Create your own Google OAuth client (one time, about 5 minutes)
 
@@ -151,6 +168,10 @@ swift build                    # debug build
 # Regenerate the app icon
 swift scripts/make-icon.swift
 ```
+
+## License
+
+[MIT](LICENSE) © 2026 Shahed Mehbub. You're welcome to use, modify and share it.
 
 ---
 
